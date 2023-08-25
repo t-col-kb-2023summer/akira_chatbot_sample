@@ -66,7 +66,7 @@ def system_message_cb():
     communicate()
 
 
-system_role_input = st.text_area("チャットAIに適用させる設定を入力してください", key="system_role_input", on_change=communicate, value=(st.session_state["system_role_input"] if "system_role_input" in st.session_state else role_system))
+system_role_input = st.text_area("チャットAIに適用させる設定を入力してください", key="system_role_input", on_change=system_message_cb, value=(st.session_state["system_role_input"] if "system_role_input" in st.session_state else role_system))
 
 
 user_input = st.text_input("メッセージを入力してください。", key="user_input", on_change=communicate)
