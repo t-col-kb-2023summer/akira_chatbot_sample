@@ -38,7 +38,7 @@ def communicate():
     system_message = {"role": "system", "content": system_message_text}
     user_message = {"role": "user", "content": st.session_state["user_input"]}
     initial_all_messages = st.session_state["messages"]
-    rest_messages = initial_all_messages[1:] if len(all_messages) > 1 else []
+    rest_messages = initial_all_messages[1:] if len(initial_all_messages) > 1 else []
     all_messages = [system_message, *rest_messages, user_message]
 
     response = openai.ChatCompletion.create(
