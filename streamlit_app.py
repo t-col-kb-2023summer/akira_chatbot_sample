@@ -59,6 +59,13 @@ def communicate():
     st.session_state["user_input"] = ""  # 入力欄を消去
 
 
+def system_message_cb():
+    if "user_input" not in st.session_state or st.session_state["user_input"].strip() == "":
+        return
+
+    communicate()
+
+
 system_role_input = st.text_area("チャットAIに適用させる設定を入力してください", key="system_role_input", on_change=communicate, value=(st.session_state["system_role_input"] if "system_role_input" in st.session_state else role_system))
 
 
