@@ -15,6 +15,15 @@ def display_tokens():
     st.write("messeage数 "+len+", 今回消費token "+total+", 累計消費token "+all+"です")
 
 
+# st.session_stateを使いメッセージのやりとりを保存
+if "messages_len" not in st.session_state:
+    st.session_state["messages_len"] = 0
+if "total_tokens" not in st.session_state:
+    st.session_state["total_tokens"] = 0
+if "all_tokens" not in st.session_state:
+    st.session_state["all_tokens"] = 0
+
+
 # UIの構築
 st.title("My AI Assistant")
 st.write("ChatGPT APIを使ったチャットボットです。")
@@ -49,14 +58,6 @@ def communicate():
 
 
 system_role_input = st.text_input("チャットAIに適用させる設定を入力してください", key="system_role_input", on_change=communicate, value=(st.session_state["system_role_input"] if "system_role_input" in st.session_state else role_system))
-
-# st.session_stateを使いメッセージのやりとりを保存
-if "messages_len" not in st.session_state:
-    st.session_state["messages_len"] = 0
-if "total_tokens" not in st.session_state:
-    st.session_state["total_tokens"] = 0
-if "all_tokens" not in st.session_state:
-    st.session_state["all_tokens"] = 0
 
 
 user_input = st.text_input("メッセージを入力してください。", key="user_input", on_change=communicate)
