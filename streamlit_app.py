@@ -52,6 +52,7 @@ def communicate():
     if len(all_messages) >= message_max:
         del all_messages[1:3] # 最も古いやり取り(質問+応答)を削除(先頭はrole:systemなので削除せず)
 
+    st.session_state["messages"] = all_messages
     st.session_state["messages_len"] = len(all_messages)
     st.session_state["total_tokens"] = response["usage"]["total_tokens"]
     st.session_state["all_tokens"] += response["usage"]["total_tokens"]
